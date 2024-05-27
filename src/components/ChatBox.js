@@ -14,7 +14,7 @@ const ChatBox = () => {
       "hi": "Hello! How can I assist you today?",
       "hello": "Hello! How can I assist you today?",
       "hey": "Hello! How can I assist you today?",
-      "how are you": "I'm just a bot, but thank you for asking!",
+      "how are you?": "I'm just a bot, but thank you for asking!",
       "bye": "Goodbye! Have a great day!",
     };
 
