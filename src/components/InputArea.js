@@ -1,6 +1,5 @@
-// src/components/InputArea.js
 import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import { Box, TextField, Button, Paper } from '@mui/material';
 
 const InputArea = ({ onSend }) => {
   const [text, setText] = useState('');
@@ -13,15 +12,21 @@ const InputArea = ({ onSend }) => {
   };
 
   return (
-    <Box display="flex" mt={2}>
+    <Box display="flex" alignItems="center" mt={0} p={2} component={Paper} elevation={3}>
       <TextField
-        variant="outlined"
         fullWidth
+        variant="outlined"
+        placeholder="Type your message here..."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSend();
+          }
+        }}
+        style={{ marginRight: '10px' }}
       />
-      <Button variant="contained" color="primary" onClick={handleSend} style={{ marginLeft: '10px' }}>
+      <Button variant="contained" color="primary" onClick={handleSend}>
         Send
       </Button>
     </Box>
