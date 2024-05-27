@@ -8,7 +8,9 @@ import { fetchCaseDetails, fetchMessages, sendMessage as sendMsg } from '../api/
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
-  const [caseDetails, setCaseDetails] = useState({});
+  const [caseDetails, setCaseDetails] = useState({
+    createdAt: '25/05/2024',  // Hardcoded date
+  });
 
   const generateResponse = (userInput) => {
     const input = userInput.toLowerCase();
@@ -34,7 +36,7 @@ const ChatBox = () => {
       try {
         const caseRes = await fetchCaseDetails();
         const messagesRes = await fetchMessages();
-        setCaseDetails(caseRes.data);
+        setCaseDetails(prevDetails => ({ ...prevDetails, ...caseRes.data }));
         setMessages(messagesRes.data);
       } catch (error) {
         console.error('Error fetching data', error);
@@ -80,12 +82,13 @@ const ChatBox = () => {
             lineHeight: '26px',
             letterSpacing: '-0.02em',
             textAlign: 'left',
-            marginTop: '16px' // optional: add margin top to separate from the above content
+            marginTop: '16px',
+            marginBottom: "5px"
           }}
         >
           I want to cancel my subscription
         </Typography>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2} mt={1} mb={1} alignItems="center">
           <Grid item xs={6} container alignItems="center">
             <ChatBubbleOutlineIcon />
             <Typography
@@ -96,7 +99,7 @@ const ChatBox = () => {
                 fontSize: '14px',
                 fontWeight: 400,
                 lineHeight: '21px',
-                textAlign: 'left'
+                textAlign: 'left',
               }}
             >
               Case ID: {caseDetails.caseId}

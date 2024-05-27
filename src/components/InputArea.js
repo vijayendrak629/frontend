@@ -12,7 +12,7 @@ const InputArea = ({ onSend }) => {
   };
 
   return (
-    <Box display="flex" alignItems="center" mt={0} p={2} component={Paper} elevation={3}>
+    <Box display="flex" alignItems="center" p={2} component={Paper} elevation={3} style={{ borderTop: '1px solid #e0e0e0', borderRadius: 0 }}>
       <TextField
         fullWidth
         variant="outlined"
@@ -24,11 +24,26 @@ const InputArea = ({ onSend }) => {
             handleSend();
           }
         }}
-        style={{ marginRight: '10px' }}
+        InputProps={{
+          endAdornment: (
+            <Button
+              variant="contained"
+              onClick={handleSend}
+              sx={{
+                backgroundColor: 'rgba(5, 4, 126, 1)',
+                '&:hover': {
+                  backgroundColor: 'rgba(5, 4, 126, 0.8)',
+                },
+                height: '100%',
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0
+              }}
+            >
+              Send
+            </Button>
+          )
+        }}
       />
-      <Button variant="contained" color="primary" onClick={handleSend}>
-        Send
-      </Button>
     </Box>
   );
 };
